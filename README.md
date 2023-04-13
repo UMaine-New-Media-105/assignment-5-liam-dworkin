@@ -6,3 +6,8 @@ varying size and location and a pretty basic color scheme. I'm working on adding
 them more as jittery than 'moving'. 
 
 Part #1 Link: https://editor.p5js.org/liamdworkin/sketches/lPgAlE7lv
+
+Part #2 of my assignment ends up using a nested loop, a for loop and the array along with then using the class/new functions to update/show in the second loop 50 of my bubbles. I still have the random movement function on, have edited the placement a bit since Part #1 and have changed the size and amount of bubbles to the required 50.
+The only issue I am currently encountering is no matter what I try I can't get the 'boundary' issue to function correctly. All the bubbles still bounce in and out of the canvas regardless of what I have tried. I left in some old code commented out and an experiment I tried with having 'move' hold part of the conditional for boundaries. It did not work. 
+
+Part #2 Link: https://editor.p5js.org/liamdworkin/sketches/HVIPCjyIZ

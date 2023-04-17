@@ -1,6 +1,7 @@
 //Liam Dworkin
 //NMD 105
-//April 10th, 2023
+//April 15th, 2023
+
 let orientation = 50;
 let speedX;
 let x1;
@@ -18,28 +19,29 @@ function setup() {
 
   /*added for random direction and speed of some extent it still doesn't work as I want it to with the boundary boxes. I'm working on that. It also doesn't center as much as I'd like. I think all the random variables are causing some issue that or I can't seem to get it to function properly.*/
 
-  speedX = 3;
-  directionX = random(3);
+  // speedX = 3;
+  // directionX = random(1,3);
   //x1 = width/2;
   x1 = random(width);
 
-  speedY = 3;
-  directionY = random(3);
+  // speedY = 3;
+  // directionY = random(1,3);
   //y1 = height/2;
   y1 = random(height);
 
   bubbles = [];
+  bubbles1 = [];
 
   //loop for the bubbles using the array
 
   for (let bubblesDrawn = 0; bubblesDrawn < 50; bubblesDrawn++) {
-    bubbles[bubblesDrawn] = new bubble(random(x1), random(y1), random(8, 13));
+    bubbles[bubblesDrawn] = new bubble(x1, y1, random(8, 13));
   }
-  
+
   /*I'm also working on getting both 'bubble' particles in and functioning correctly*/
-  
+
   for (let bubblesDrawn1 = 0; bubblesDrawn1 < 50; bubblesDrawn1++) {
-    bubbles[bubblesDrawn1] = new bubbleBad(random(x1), random(y1), random(8, 13));
+    bubbles1[bubblesDrawn1] = new bubbleBad(x1, y1, random(8, 13));
   }
 
   /*old code from part 1
@@ -51,8 +53,8 @@ function setup() {
 }
 
 function draw() {
-  x1 += speedX * directionX;
-  y1 += speedX * directionY;
+  // x1 += speedX * directionX;
+  // y1 += speedY * directionY;
 
   if (x1 + 25 >= width || x1 < 25) {
     // check if hits the right edge
@@ -69,9 +71,9 @@ function draw() {
   background("navy");
 
   /*loop for the bubbles instead of how I had it, calling each one back*/
-  
+
   /*the goal is to have some sort of agar.io like simulation- the bubbles will be collected for enlarging the sprite (yeetBall) and there are particles that will then 'damage' and shrink the yeetBall sprite- I have not yet added in functionality because I wanted to ask about how to do it*/
-  
+
   push();
   yeetBall(600, 450, 1);
   pop();
@@ -81,10 +83,10 @@ function draw() {
     bubbles[bubblesShown].show();
     //bubbles[bubblesShown].move(); (part of experiment)
   }
-  
+
   for (let bubblesShown1 = 0; bubblesShown1 < 50; bubblesShown1++) {
-    bubbles[bubblesShown1].update();
-    bubbles[bubblesShown1].show();
+    bubbles1[bubblesShown1].update();
+    bubbles1[bubblesShown1].show();
     //bubbles[bubblesShown].move(); (part of experiment)
   }
 
@@ -105,17 +107,42 @@ function draw() {
 
 //code from class assignment for the bubble creation
 
+//still experimenting with boundaries for a ton of random bubbles
+
+//I tried to move the boundary code into the class function
+//It has yet to work
+
 class bubble {
   constructor(x, y, r) {
     this.x = x;
     this.y = y;
     this.r = r;
-    this.rand = random(-3, 3);
+    this.randX = random(1, 3);
+    this.randY = random(1, 3);
+    this.x1 += random(width);
+    this.y1 += random(height);
+    this.speedX = 3;
+    this.speedY = 3;
   }
   //random variables in x and y (not the best movement yet)
   update() {
-    this.x = this.x + this.rand;
-    this.y = this.y + this.rand;
+    this.x = this.x + this.randX;
+    this.y = this.y + this.randY;
+
+    this.x1 += this.speedX * this.randX;
+    this.y1 += this.speedX * this.randY;
+
+    if (this.x1 + 25 >= width || this.x1 < 25) {
+      // check if hits the right edge
+      this.randX *= -1;
+    }
+
+    //conditional - the same as width boundary but for height
+
+    if (this.y1 + 25 >= height || this.y1 < 25) {
+      // check if hits the right edge
+      this.randY *= -1;
+    }
   }
 
   /* an experiment
@@ -140,12 +167,13 @@ class bubbleBad {
     this.x = x;
     this.y = y;
     this.r = r;
-    this.rand = random(-3, 3);
+    this.randX = random(1, 3);
+    this.randY = random(1, 3);
   }
   //random variables in x and y (not the best movement yet)
   update() {
-    this.x = this.x + this.rand;
-    this.y = this.y + this.rand;
+    this.x = this.x + this.randX;
+    this.y = this.y + this.randY;
   }
 
   /* an experiment
@@ -170,7 +198,7 @@ function yeetBall(x, y, size) {
   translate(x, y);
   scale(size);
   strokeWeight(5);
-  stroke("pink")
+  stroke("pink");
   fill("hsla(170, 80%, 75%, .7)");
   ellipse(0, 0, 80, 80);
   scale(2 / 5);

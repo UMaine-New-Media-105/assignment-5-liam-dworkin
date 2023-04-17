@@ -11,3 +11,5 @@ Part #2 of my assignment ends up using a nested loop, a for loop and the array a
 The only issue I am currently encountering is no matter what I try I can't get the 'boundary' issue to function correctly. All the bubbles still bounce in and out of the canvas regardless of what I have tried. I left in some old code commented out and an experiment I tried with having 'move' hold part of the conditional for boundaries. It did not work. 
 
 Part #2 Link: https://editor.p5js.org/liamdworkin/sketches/HVIPCjyIZ
+
+Part #3 involves adding in simulation sprites. There is a single sprite that will get larger as it interacts with the feeder particles (orange balls that are 'bubble') and then also it will get smaller and 'weaker' when it hits the 'bad' bubbles "bubbleBad". Right now it's not fully functioning but my goal is to get all the interaction down for Part #4. I want to try and do a different sim: one that presents the trolly problem to a sprite that must decide how it chooses to interact; however, I don't think I'm technically capable enough to do so. 

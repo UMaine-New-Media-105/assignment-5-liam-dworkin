@@ -43,7 +43,7 @@ function setup() {
     bubbles1[bubblesDrawn1] = new bubbleBad(x1, y1, random(8, 13));
   }
 
-  for (let yeetBallDrawn = 0; yeetBallDrawn < 1; yeetBallDrawn++) {
+  for (let yeetBallDrawn = 0; yeetBallDrawn < 3; yeetBallDrawn++) {
     yeetBall1[yeetBallDrawn] = new yeetBall(x1, y1, 1);
   }
 }
@@ -80,7 +80,7 @@ function draw() {
     //bubbles[bubblesShown].move(); (part of experiment)
   }
 
-  for (let bubblesShown2 = 0; bubblesShown2 < 1; bubblesShown2++) {
+  for (let bubblesShown2 = 0; bubblesShown2 < 3; bubblesShown2++) {
     yeetBall1[bubblesShown2].update();
     yeetBall1[bubblesShown2].show();
     //bubbles[bubblesShown].move(); (part of experiment)
@@ -191,6 +191,7 @@ class yeetBall {
   show() {
     push();
     translate(this.x, this.y, this.r * 2);
+    rotate(random(1,10));
     strokeWeight(5);
     stroke("pink");
     fill("hsla(170, 80%, 75%, .7)");
